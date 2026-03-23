@@ -726,14 +726,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1>Stop losing<br>the <em>profit</em> you<br>already earned.</h1>
       <p class="hero-sub">One system to book more jobs, cut admin overhead, and see what you actually made this week.</p>
 
-      <!-- Email-first CTA -->
+      <!-- Book demo CTA -->
       <div class="hero-email-cta">
-        <div class="hero-email-label" style="font-size:.92rem;font-weight:700;text-transform:none;letter-spacing:0;color:var(--text);display:flex;align-items:center;gap:7px;margin-bottom:10px"><svg width="16" height="16" fill="none" stroke="var(--terra)" stroke-width="2.2" stroke-linecap="round" viewBox="0 0 16 16"><path d="M2 4h12v9H2z"/><path d="M2 4l6 5.5L14 4"/></svg> Start your free trial</div>
-        <div class="hero-email-group">
-          <input class="hero-email-input" type="email" placeholder="What's your email?" autocomplete="email"/>
-          <button class="hero-email-btn">Get one month free <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></button>
-        </div>
-        <div class="hero-email-sub">No credit card required</div>
+        <a href="#book-demo" class="hero-email-btn" onclick="scrollToDemo(event)" style="display:inline-flex;padding:16px 32px;border-radius:10px;text-decoration:none;font-size:.95rem">Book a free demo <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 14 14"><path d="M5 2l5 5-5 5"/></svg></a>
+        <div class="hero-email-sub">20 minutes with our founder — not a sales rep</div>
       </div>
 
       <!-- Demo video trigger -->
@@ -1565,6 +1561,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div><div class="cal-title">Book a free 20-minute demo</div><div class="cal-sub">Pick a time — demo is with our founder, not a sales rep</div></div>
       </div>
       <div class="cal-body">
+        <div id="timeSlotGroup" style="display:none">
+          <div class="time-slot-label">Pick a time</div>
+          <div class="time-slots" id="timeSlots"></div>
+        </div>
         <div id="calendarContainer" class="calendar-container"></div>
         <div class="booking-contact" style="margin-top:20px;margin-bottom:0">
           <input type="text" id="bookName" placeholder="Full name *" autocomplete="name">
@@ -1573,10 +1573,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="error-msg" id="bookEmailErr">Please enter a valid email</div>
           <input type="tel" id="bookPhone" placeholder="Phone number *" autocomplete="tel">
           <div class="error-msg" id="bookPhoneErr">Please enter your phone number</div>
-        </div>
-        <div id="timeSlotGroup" style="display:none">
-          <div class="time-slot-label">Pick a time</div>
-          <div class="time-slots" id="timeSlots"></div>
         </div>
         <input type="hidden" id="selectedDate">
         <input type="hidden" id="selectedTime">
@@ -1851,53 +1847,10 @@ function nextTestimonial(){setTestimonial(tIdx+1);}
 function prevTestimonial(){setTestimonial(tIdx-1);}
 const el=document.getElementById('testimonialText');if(el)el.style.transition='opacity .2s ease';
 
-// Email capture → CRM lead
-(function(){
-  var emailInput=document.querySelector('.hero-email-input');
-  var emailBtn=document.querySelector('.hero-email-btn');
-  if(!emailInput||!emailBtn) return;
-  emailBtn.addEventListener('click',async function(){
-    var email=emailInput.value.trim();
-    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-      emailInput.style.borderColor='#B71C1C';
-      emailInput.focus();
-      return;
-    }
-    emailInput.style.borderColor='';
-    emailBtn.disabled=true;
-    var origText=emailBtn.textContent;
-    while(emailBtn.firstChild) emailBtn.removeChild(emailBtn.firstChild);
-    emailBtn.textContent='Sending...';
-    var params=new URLSearchParams(window.location.search);
-    var data={
-      companyId:6,
-      fullName:'',
-      email:email,
-      phone:'',
-      selectedDate:'',
-      selectedTime:'',
-      utmSource:params.get('utm_source')||'',
-      utmMedium:params.get('utm_medium')||'',
-      utmCampaign:params.get('utm_campaign')||'',
-      referrerUrl:document.referrer||''
-    };
-    try{
-      var response=await fetch('https://helloservice1.com/api/bookings',{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(data)
-      });
-      if(response.ok){
-        if(typeof fbq==='function') fbq('track','Lead');
-        window.location.href='/booked';
-      }else{
-        emailBtn.disabled=false;emailBtn.textContent=origText;
-      }
-    }catch(e){
-      emailBtn.disabled=false;emailBtn.textContent=origText;
-    }
-  });
-})();
+function scrollToDemo(e){
+  e.preventDefault();
+  document.getElementById('book-demo').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
 // ── Booking Calendar System ──
 (function(){

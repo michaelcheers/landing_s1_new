@@ -694,6 +694,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div><div class="cal-title">Book a free 20-minute demo</div><div class="cal-sub">Pick a time — demo is with our founder, not a sales rep</div></div>
       </div>
       <div class="cal-body">
+        <div id="timeSlotGroup" style="display:none">
+          <div class="time-slot-label">Pick a time</div>
+          <div class="time-slots" id="timeSlots"></div>
+        </div>
         <div id="calendarContainer" class="calendar-container"></div>
         <div class="booking-contact" style="margin-top:20px;margin-bottom:0">
           <input type="text" id="bookName" placeholder="Full name *" autocomplete="name">
@@ -702,10 +706,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="error-msg" id="bookEmailErr">Please enter a valid email</div>
           <input type="tel" id="bookPhone" placeholder="Phone number *" autocomplete="tel">
           <div class="error-msg" id="bookPhoneErr">Please enter your phone number</div>
-        </div>
-        <div id="timeSlotGroup" style="display:none">
-          <div class="time-slot-label">Pick a time</div>
-          <div class="time-slots" id="timeSlots"></div>
         </div>
         <input type="hidden" id="selectedDate">
         <input type="hidden" id="selectedTime">
