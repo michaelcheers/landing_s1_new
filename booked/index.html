@@ -135,12 +135,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>Confirmed. <em>Talk soon.</em></h1>
     <p class="intro">Your demo is with our founder — not a sales rep. It's a real look at how Service1 would work for your moving company. Come ready to ask anything.</p>
 
-    <div class="cal-actions">
-      <a href="https://calendar.google.com/calendar/r/eventedit" target="_blank" class="cal-btn primary">
+    <div class="cal-actions" id="calActions" style="display:none">
+      <a id="gcalLink" href="#" target="_blank" class="cal-btn primary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"/></svg>
         Add to Google Calendar
       </a>
-      <a href="#" onclick="downloadIcal(event)" class="cal-btn secondary">
+      <a href="#" id="icalLink" class="cal-btn secondary">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"/></svg>
         Add to Outlook / iCal
       </a>
@@ -217,32 +217,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
-function downloadIcal(e) {
-  e.preventDefault();
-  // Generates a basic .ics file
-  // Update DTSTART/DTEND with real booking time once CRM passes it via URL params
-  const params = new URLSearchParams(window.location.search);
-  const summary = 'Service1 Demo Call';
-  const description = 'Your 20-minute Service1 demo. Video call link in your confirmation email from info@service1.app';
-  const ics = [
-    'BEGIN:VCALENDAR',
-    'VERSION:2.0',
-    'PRODID:-//Service1//Demo//EN',
-    'BEGIN:VEVENT',
-    'SUMMARY:' + summary,
-    'DESCRIPTION:' + description,
-    'URL:https://service1.app',
-    'END:VEVENT',
-    'END:VCALENDAR'
-  ].join('\r\n');
-  const blob = new Blob([ics], {type: 'text/calendar'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'service1-demo.ics';
-  a.click();
-  URL.revokeObjectURL(url);
-}
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var dateStr = params.get('date');
+  var timeStr = params.get('time');
+  var mins = parseInt(params.get('mins')) || 30;
+  var tz = params.get('tz') || '';
+
+  if (!dateStr || !timeStr) return;
+
+  // Parse "9:00 AM" or "2:30 PM" into 24h hours and minutes
+  var tp = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!tp) return;
+  var h = parseInt(tp[1]), m = parseInt(tp[2]), period = tp[3].toUpperCase();
+  if (period === 'PM' && h !== 12) h += 12;
+  if (period === 'AM' && h === 12) h = 0;
+
+  // Build start/end Date objects
+  var dp = dateStr.split('-');
+  var startDate = new Date(parseInt(dp[0]), parseInt(dp[1]) - 1, parseInt(dp[2]), h, m, 0);
+  var endDate = new Date(startDate.getTime() + mins * 60000);
+
+  function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+  function fmtLocal(d) {
+    return d.getFullYear() + pad2(d.getMonth() + 1) + pad2(d.getDate()) + 'T' + pad2(d.getHours()) + pad2(d.getMinutes()) + '00';
+  }
+
+  var startFmt = fmtLocal(startDate);
+  var endFmt = fmtLocal(endDate);
+  var title = 'Service1 Demo Call';
+  var details = 'Your ' + mins + '-minute Service1 demo. Video call link in your confirmation email from info@service1.app';
+
+  // Google Calendar link
+  var gcalUrl = 'https://calendar.google.com/calendar/r/eventedit?text=' + encodeURIComponent(title) +
+    '&dates=' + startFmt + '/' + endFmt +
+    '&details=' + encodeURIComponent(details);
+  if (tz) gcalUrl += '&ctz=' + encodeURIComponent(tz);
+  document.getElementById('gcalLink').href = gcalUrl;
+
+  // iCal download
+  document.getElementById('icalLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    var ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Service1//Demo//EN',
+      'BEGIN:VEVENT',
+      'DTSTART:' + startFmt,
+      'DTEND:' + endFmt,
+      'SUMMARY:' + title,
+      'DESCRIPTION:' + details.replace(/\n/g, '\\n'),
+      'URL:https://service1.app',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+    var blob = new Blob([ics], {type: 'text/calendar'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'service1-demo.ics';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // Show the calendar buttons
+  document.getElementById('calActions').style.display = '';
+})();
 </script>
 
 </body>

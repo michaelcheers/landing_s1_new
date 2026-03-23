@@ -1114,7 +1114,12 @@ document.getElementById('bookingSubmitBtn').addEventListener('click',async funct
     if(response.ok&&result.success){
       if(typeof fbq==='function') fbq('track','Lead');
       if(typeof gtag==='function') gtag('event','conversion',{send_to:'AW-XXXXX/XXXXX'});
-      window.location.href='/booked';
+      var bp=new URLSearchParams();
+      bp.set('date',selectedCustomerDate);
+      bp.set('time',selectedTime);
+      bp.set('mins',String(bookingAvailability.slotMinutes||30));
+      bp.set('tz',customerTimezone);
+      window.location.href='/booked?'+bp.toString();
     }else{
       status.textContent='Something went wrong. Please try again.';status.style.display='block';
       btn.disabled=false;btn.textContent='Book My Demo';
