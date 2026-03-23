@@ -699,6 +699,14 @@ footer{border-top:1px solid var(--border);padding:56px var(--hp) 32px;max-width:
 @media(max-width:900px){.sr-track-wrap{grid-template-columns:1fr;height:400px}.sr-col:nth-child(2),.sr-col:nth-child(3){display:none}}
 
 </style>
+<script type='text/javascript'>
+  window.smartlook||(function(d) {
+    var o=smartlook=function(){ o.api.push(arguments)},h=d.getElementsByTagName('head')[0];
+    var c=d.createElement('script');o.api=new Array();c.async=true;c.type='text/javascript';
+    c.charset='utf-8';c.src='https://web-sdk.smartlook.com/recorder.js';h.appendChild(c);
+    })(document);
+    smartlook('init', 'db4dd3459adcaa70d853a17d48cfe4db83eca28f', { region: 'eu' });
+</script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -753,22 +761,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <!-- Demo Modal -->
-    <div id="demoModal" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,12,8,.85);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)">
+    <div id="demoModal" onclick="if(event.target===this){this.style.display='none';document.getElementById('demoVideo').pause()}" style="display:none;position:fixed;inset:0;background:rgba(0,12,8,.85);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)">
       <div style="position:relative;width:100%;max-width:860px;background:var(--ink);border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08)">
           <span style="font-size:.88rem;font-weight:600;color:rgba(255,255,255,.7)">Service1 — 2-Minute Product Demo</span>
-          <button onclick="document.getElementById('demoModal').style.display='none'" style="background:rgba(255,255,255,.08);border:none;cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:1rem">✕</button>
+          <button onclick="document.getElementById('demoModal').style.display='none';document.getElementById('demoVideo').pause()" style="background:rgba(255,255,255,.08);border:none;cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:1rem">✕</button>
         </div>
-        <!-- Replace this placeholder with real <video> or <iframe> embed -->
-        <div style="aspect-ratio:16/9;background:linear-gradient(135deg,#001208,rgba(0,77,64,.4));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px">
-          <div style="width:72px;height:72px;border-radius:50%;background:rgba(0,77,64,.5);display:flex;align-items:center;justify-content:center;border:2px solid rgba(0,137,123,.5)">
-            <svg width="24" height="26" viewBox="0 0 24 26" fill="none"><path d="M3 2l19 11L3 24V2z" fill="rgba(255,255,255,.85)"/></svg>
-          </div>
-          <div style="text-align:center">
-            <div style="font-family:var(--serif);font-size:1.3rem;color:rgba(255,255,255,.65);margin-bottom:6px">Demo video</div>
-            <div style="font-size:.8rem;color:rgba(255,255,255,.3)">Replace this with your video embed</div>
-          </div>
-        </div>
+        <video id="demoVideo" style="width:100%;display:block" controls preload="metadata">
+          <source src="/images/vid.webm" type="video/webm">
+        </video>
       </div>
     </div>
 
