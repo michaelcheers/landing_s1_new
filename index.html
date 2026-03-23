@@ -1773,6 +1773,54 @@ function setTestimonial(i){
 function nextTestimonial(){setTestimonial(tIdx+1);}
 function prevTestimonial(){setTestimonial(tIdx-1);}
 const el=document.getElementById('testimonialText');if(el)el.style.transition='opacity .2s ease';
+
+// Email capture → CRM lead
+(function(){
+  var emailInput=document.querySelector('.hero-email-input');
+  var emailBtn=document.querySelector('.hero-email-btn');
+  if(!emailInput||!emailBtn) return;
+  emailBtn.addEventListener('click',async function(){
+    var email=emailInput.value.trim();
+    if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      emailInput.style.borderColor='#B71C1C';
+      emailInput.focus();
+      return;
+    }
+    emailInput.style.borderColor='';
+    emailBtn.disabled=true;
+    var origText=emailBtn.textContent;
+    while(emailBtn.firstChild) emailBtn.removeChild(emailBtn.firstChild);
+    emailBtn.textContent='Sending...';
+    var params=new URLSearchParams(window.location.search);
+    var data={
+      companyId:3,
+      fullName:'',
+      email:email,
+      phone:'',
+      selectedDate:'',
+      selectedTime:'',
+      utmSource:params.get('utm_source')||'',
+      utmMedium:params.get('utm_medium')||'',
+      utmCampaign:params.get('utm_campaign')||'',
+      referrerUrl:document.referrer||''
+    };
+    try{
+      var response=await fetch('https://helloservice1.com/api/bookings',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(data)
+      });
+      if(response.ok){
+        if(typeof fbq==='function') fbq('track','Lead');
+        window.location.href='/booked';
+      }else{
+        emailBtn.disabled=false;emailBtn.textContent=origText;
+      }
+    }catch(e){
+      emailBtn.disabled=false;emailBtn.textContent=origText;
+    }
+  });
+})();
 </script>
 
 </body>

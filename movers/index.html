@@ -224,12 +224,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .cal-icon svg{width:16px;height:16px;color:#fff}
 .cal-title{color:#fff;font-weight:600;font-size:.92rem}
 .cal-sub{color:rgba(255,255,255,.65);font-size:.76rem;margin-top:2px}
-.cal-placeholder{padding:44px 28px;text-align:center;background:var(--cream)}
-.cal-placeholder-icon{width:52px;height:52px;background:var(--terra-g);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-.cal-placeholder-icon svg{width:26px;height:26px;color:var(--terra)}
-.cal-placeholder h4{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:8px}
-.cal-placeholder p{font-size:.86rem;color:var(--text2);margin-bottom:20px;line-height:1.6}
-.cal-embed-note{font-size:.73rem;color:var(--text3);background:var(--sand);border:1px dashed var(--border-s);border-radius:8px;padding:10px 14px;display:inline-block;text-align:left}
+.cal-body{padding:20px;background:var(--cream)}
+.booking-contact{display:grid;gap:12px;margin-bottom:20px}
+.booking-contact input{width:100%;padding:11px 14px;font-family:var(--sans);font-size:.88rem;border:1.5px solid var(--border-m);border-radius:8px;outline:none;background:var(--surface);color:var(--text);transition:border-color .2s}
+.booking-contact input:focus{border-color:var(--terra)}
+.booking-contact input::placeholder{color:var(--text3)}
+.booking-contact .error-msg{font-size:.72rem;color:var(--warm-red);margin-top:2px;display:none}
+.booking-contact .error-msg.show{display:block}
+.calendar-container{background:var(--surface);border:1.5px solid var(--border-m);border-radius:10px;padding:10px}
+.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.calendar-header h3{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--text)}
+.calendar-nav{display:flex;gap:6px}
+.calendar-nav button{background:transparent;border:1px solid var(--border-m);width:30px;height:30px;border-radius:6px;cursor:pointer;color:var(--text);font-size:14px;transition:all .2s}
+.calendar-nav button:hover{border-color:var(--terra);color:var(--terra)}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.calendar-day-header{text-align:center;font-size:.68rem;font-weight:600;color:var(--text3);padding:4px 0;text-transform:uppercase}
+.calendar-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:6px;cursor:pointer;transition:all .2s;font-size:.82rem;color:var(--text)}
+.calendar-day:hover:not(.disabled):not(.past){border-color:var(--terra);background:var(--terra-l)}
+.calendar-day.selected{background:var(--terra);color:#fff;border-color:var(--terra)}
+.calendar-day.disabled,.calendar-day.past{color:var(--text3);opacity:.3;cursor:not-allowed}
+.calendar-day.today{border-color:var(--terra);font-weight:600}
+.time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.time-slot{padding:7px;border:1.5px solid var(--border-m);border-radius:8px;text-align:center;cursor:pointer;transition:all .2s;font-weight:500;font-size:.82rem;color:var(--text)}
+.time-slot:hover{border-color:var(--terra);background:var(--terra-l)}
+.time-slot.selected{background:var(--terra);color:#fff;border-color:var(--terra)}
+.time-slot.unavailable{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.time-slot-label{font-size:.72rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.booking-submit{width:100%;padding:14px;background:var(--amber);color:var(--ink);border:none;border-radius:10px;font-family:var(--sans);font-weight:700;font-size:.92rem;cursor:pointer;transition:all .2s;margin-top:16px;box-shadow:0 1px 0 rgba(0,0,0,.1),0 2px 8px rgba(212,150,10,.25)}
+.booking-submit:hover{background:var(--amber-h);transform:translateY(-1.5px);box-shadow:0 4px 20px rgba(212,150,10,.4)}
+.booking-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.booking-status{text-align:center;font-size:.82rem;color:var(--text2);margin-top:10px;display:none}
+@media(max-width:640px){.time-slots{grid-template-columns:repeat(2,1fr)}}
 
 /* FOOTER */
 footer{background:var(--terra);padding:20px var(--hp);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
@@ -642,11 +667,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="cal-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"/></svg></div>
         <div><div class="cal-title">Book a free 20-minute demo</div><div class="cal-sub">Pick a time — demo is with our founder, not a sales rep</div></div>
       </div>
-      <div class="cal-placeholder">
-        <div class="cal-placeholder-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"/></svg></div>
-        <h4>Your calendar embed goes here</h4>
-        <p>Replace this block with your Calendly, Cal.com, or HubSpot Meetings embed.<br>The surrounding design stays exactly as-is.</p>
-        <div class="cal-embed-note">&lt;!-- Paste your calendar embed script here --&gt;<br>e.g. &lt;div class="calendly-inline-widget" data-url="..."&gt;&lt;/div&gt;</div>
+      <div class="cal-body">
+        <div class="booking-contact">
+          <input type="text" id="bookName" placeholder="Full name *" autocomplete="name">
+          <div class="error-msg" id="bookNameErr">Please enter your name</div>
+          <input type="email" id="bookEmail" placeholder="Email address *" autocomplete="email">
+          <div class="error-msg" id="bookEmailErr">Please enter a valid email</div>
+          <input type="tel" id="bookPhone" placeholder="Phone number *" autocomplete="tel">
+          <div class="error-msg" id="bookPhoneErr">Please enter your phone number</div>
+        </div>
+        <div id="calendarContainer" class="calendar-container"></div>
+        <div id="timeSlotGroup" style="display:none">
+          <div class="time-slot-label">Pick a time</div>
+          <div class="time-slots" id="timeSlots"></div>
+        </div>
+        <input type="hidden" id="selectedDate">
+        <input type="hidden" id="selectedTime">
+        <button type="button" id="bookingSubmitBtn" class="booking-submit" disabled>Book My Demo</button>
+        <div class="booking-status" id="bookingStatus"></div>
       </div>
     </div>
     <p class="cta-note">No credit card. No pressure. No generic pitch — just a real look at what's possible for your moving company.</p>
@@ -725,23 +763,369 @@ function scrollToDemo(e){
   document.getElementById('book-demo').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function showThankYou(){
-  document.getElementById('landing').style.display='none';
-  const ty=document.getElementById('thankyou');
-  ty.style.display='flex';
-  window.scrollTo(0,0);
-  history.pushState({},'','?booked=true');
-}
-
 if(window.location.search.includes('booked=true')){
   document.getElementById('landing').style.display='none';
   document.getElementById('thankyou').style.display='flex';
 }
 
-// Uncomment when Calendly is embedded:
-// window.addEventListener('message',e=>{
-//   if(e.data&&e.data.event==='calendly.event_scheduled')showThankYou();
-// });
+// ── Booking Calendar System ──
+(function(){
+var API_BASE = 'https://helloservice1.com';
+var COMPANY_ID = 3;
+var bookingAvailability = {availableDays:['Mon','Tue','Wed','Thu','Fri'],startTime:'09:00',endTime:'17:00',slotMinutes:30,blockedDates:[]};
+var businessTimezone = null;
+var customerTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+var currentMonth = new Date();
+var selectedCustomerDate = null;
+var selectedTime = null;
+var bookedSlotsCache = {};
+
+// Load availability
+(function(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', API_BASE + '/api/bookings/availability?companyId=' + COMPANY_ID, true);
+  xhr.onload = function(){
+    if(xhr.status===200){
+      try{
+        bookingAvailability=JSON.parse(xhr.responseText);
+        if(bookingAvailability.timezone) businessTimezone=bookingAvailability.timezone;
+      }catch(e){}
+    }
+    initCalendar();
+  };
+  xhr.onerror = function(){ initCalendar(); };
+  xhr.send();
+})();
+
+function businessSlotToCustomerLocal(bizDateStr, slotStr){
+  try{
+    var parts=slotStr.trim().split(' ');
+    if(parts.length!==2) return null;
+    var tp=parts[0].split(':');
+    var h=parseInt(tp[0]),m=parseInt(tp[1]);
+    if(parts[1]==='PM'&&h!==12) h+=12;
+    if(parts[1]==='AM'&&h===12) h=0;
+    var dp=bizDateStr.split('-');
+    var year=parseInt(dp[0]),month=parseInt(dp[1])-1,day=parseInt(dp[2]);
+    var refDate=new Date(year,month,day,h,m,0);
+    var bizFormatter=new Intl.DateTimeFormat('en-US',{timeZone:businessTimezone,hour:'numeric',minute:'2-digit',hour12:true,year:'numeric',month:'2-digit',day:'2-digit'});
+    var bizParts=bizFormatter.formatToParts(refDate);
+    var bizHour=parseInt(bizParts.find(function(p){return p.type==='hour'}).value);
+    var bizMinute=parseInt(bizParts.find(function(p){return p.type==='minute'}).value);
+    var bizDayPeriod=bizParts.find(function(p){return p.type==='dayPeriod'}).value.toUpperCase();
+    var bizH24=bizHour;
+    if(bizDayPeriod==='PM'&&bizHour!==12) bizH24+=12;
+    if(bizDayPeriod==='AM'&&bizHour===12) bizH24=0;
+    var bizFormDay=parseInt(bizParts.find(function(p){return p.type==='day'}).value);
+    var bizFormMonth=parseInt(bizParts.find(function(p){return p.type==='month'}).value)-1;
+    var bizFormYear=parseInt(bizParts.find(function(p){return p.type==='year'}).value);
+    var targetBizDate=new Date(year,month,day);
+    var formBizDate=new Date(bizFormYear,bizFormMonth,bizFormDay);
+    var dayDiff=Math.round((targetBizDate-formBizDate)/86400000);
+    var diffMinutes=dayDiff*1440+(h*60+m)-(bizH24*60+bizMinute);
+    var adjustedDate=new Date(refDate.getTime()+diffMinutes*60000);
+    var custFormatter=new Intl.DateTimeFormat('en-US',{timeZone:customerTimezone,hour:'numeric',minute:'2-digit',hour12:true,year:'numeric',month:'2-digit',day:'2-digit'});
+    var custParts=custFormatter.formatToParts(adjustedDate);
+    var custHour=custParts.find(function(p){return p.type==='hour'}).value;
+    var custMin=custParts.find(function(p){return p.type==='minute'}).value;
+    var custPeriod=custParts.find(function(p){return p.type==='dayPeriod'}).value.toUpperCase();
+    var custYear=custParts.find(function(p){return p.type==='year'}).value;
+    var custMonth=custParts.find(function(p){return p.type==='month'}).value;
+    var custDay=custParts.find(function(p){return p.type==='day'}).value;
+    var customerDate=custYear+'-'+custMonth+'-'+custDay;
+    var displayTime=custHour+':'+custMin+' '+custPeriod;
+    var tzAbbr=new Intl.DateTimeFormat('en-US',{timeZone:customerTimezone,timeZoneName:'short'}).formatToParts(adjustedDate).find(function(p){return p.type==='timeZoneName'}).value;
+    var custH24=parseInt(custHour);
+    if(custPeriod==='PM'&&custH24!==12) custH24+=12;
+    if(custPeriod==='AM'&&custH24===12) custH24=0;
+    return {customerDate:customerDate,displayTime:displayTime,tzAbbr:tzAbbr,bizDate:bizDateStr,bizSlot:slotStr,sortMinutes:custH24*60+parseInt(custMin)};
+  }catch(e){return null}
+}
+
+function getTimeSlots(){
+  var slots=[];
+  var parts=bookingAvailability.startTime.split(':');
+  var startH=parseInt(parts[0]),startM=parseInt(parts[1]);
+  var endParts=bookingAvailability.endTime.split(':');
+  var endH=parseInt(endParts[0]),endM=parseInt(endParts[1]);
+  var interval=bookingAvailability.slotMinutes||30;
+  var h=startH,m=startM;
+  while(h<endH||(h===endH&&m<endM)){
+    var ampm=h>=12?'PM':'AM';
+    var dh=h>12?h-12:(h===0?12:h);
+    var dm=m<10?'0'+m:''+m;
+    slots.push(dh+':'+dm+' '+ampm);
+    m+=interval;
+    if(m>=60){h+=Math.floor(m/60);m=m%60}
+  }
+  return slots;
+}
+
+function isDayAvailable(date){
+  var dayNames=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  return bookingAvailability.availableDays.indexOf(dayNames[date.getDay()])>=0;
+}
+
+function isDateBlocked(date){
+  var ds=date.getFullYear()+'-'+String(date.getMonth()+1).padStart(2,'0')+'-'+String(date.getDate()).padStart(2,'0');
+  return bookingAvailability.blockedDates.indexOf(ds)>=0;
+}
+
+function computeAvailableCustomerDates(year,month){
+  var available={};
+  var today=new Date();today.setHours(0,0,0,0);
+  var slots=getTimeSlots();
+  if(slots.length===0) return available;
+  var firstSlot=slots[0],lastSlot=slots[slots.length-1];
+  if(businessTimezone===customerTimezone){
+    var lastDay=new Date(year,month+1,0).getDate();
+    for(var d=1;d<=lastDay;d++){
+      var date=new Date(year,month,d);date.setHours(0,0,0,0);
+      if(date>today&&isDayAvailable(date)&&!isDateBlocked(date)){
+        available[year+'-'+String(month+1).padStart(2,'0')+'-'+String(d).padStart(2,'0')]=true;
+      }
+    }
+    return available;
+  }
+  var startDate=new Date(year,month,-1),endDate=new Date(year,month+1,2),cursor=new Date(startDate);
+  while(cursor<=endDate){
+    if(cursor>today&&isDayAvailable(cursor)&&!isDateBlocked(cursor)){
+      var bizDateStr=cursor.getFullYear()+'-'+String(cursor.getMonth()+1).padStart(2,'0')+'-'+String(cursor.getDate()).padStart(2,'0');
+      var first=businessSlotToCustomerLocal(bizDateStr,firstSlot);
+      var last=businessSlotToCustomerLocal(bizDateStr,lastSlot);
+      if(first) available[first.customerDate]=true;
+      if(last) available[last.customerDate]=true;
+    }
+    cursor.setDate(cursor.getDate()+1);
+  }
+  return available;
+}
+
+function getCustomerDateSlots(customerDateStr,bookedSlotsMap){
+  var result=[];
+  var slots=getTimeSlots();
+  var dp=customerDateStr.split('-');
+  var year=parseInt(dp[0]),month=parseInt(dp[1])-1,day=parseInt(dp[2]);
+  var today=new Date();today.setHours(0,0,0,0);
+  if(businessTimezone===customerTimezone){
+    var bizDate=new Date(year,month,day);bizDate.setHours(0,0,0,0);
+    if(bizDate<=today||!isDayAvailable(bizDate)||isDateBlocked(bizDate)) return result;
+    var booked=bookedSlotsMap[customerDateStr]||[];
+    var tzAbbr=(function(){try{return new Intl.DateTimeFormat('en-US',{timeZone:customerTimezone,timeZoneName:'short'}).formatToParts(new Date()).find(function(p){return p.type==='timeZoneName'}).value}catch(e){return''}})();
+    slots.forEach(function(slot){
+      var sp=slot.trim().split(' ');var tp2=sp[0].split(':');
+      var sh=parseInt(tp2[0]),sm=parseInt(tp2[1]);
+      if(sp[1]==='PM'&&sh!==12) sh+=12;
+      if(sp[1]==='AM'&&sh===12) sh=0;
+      result.push({displayTime:slot,tzAbbr:tzAbbr,bizDate:customerDateStr,bizSlot:slot,sortMinutes:sh*60+sm,isBooked:booked.indexOf(slot)>=0});
+    });
+    return result;
+  }
+  for(var offset=-1;offset<=1;offset++){
+    var bizDate=new Date(year,month,day+offset);bizDate.setHours(0,0,0,0);
+    if(bizDate<=today||!isDayAvailable(bizDate)||isDateBlocked(bizDate)) continue;
+    var bizDateStr=bizDate.getFullYear()+'-'+String(bizDate.getMonth()+1).padStart(2,'0')+'-'+String(bizDate.getDate()).padStart(2,'0');
+    var booked=bookedSlotsMap[bizDateStr]||[];
+    slots.forEach(function(slot){
+      var converted=businessSlotToCustomerLocal(bizDateStr,slot);
+      if(converted&&converted.customerDate===customerDateStr){
+        converted.isBooked=booked.indexOf(slot)>=0;
+        result.push(converted);
+      }
+    });
+  }
+  result.sort(function(a,b){return a.sortMinutes-b.sortMinutes});
+  return result;
+}
+
+function initCalendar(){renderCalendar()}
+
+function renderCalendar(){
+  var container=document.getElementById('calendarContainer');
+  var year=currentMonth.getFullYear(),month=currentMonth.getMonth();
+  var monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var firstDay=new Date(year,month,1);
+  var totalDays=new Date(year,month+1,0).getDate();
+  var startingDayOfWeek=firstDay.getDay();
+  var today=new Date();today.setHours(0,0,0,0);
+  var availableDates=computeAvailableCustomerDates(year,month);
+  while(container.firstChild) container.removeChild(container.firstChild);
+  var header=document.createElement('div');header.className='calendar-header';
+  var h3=document.createElement('h3');h3.textContent=monthNames[month]+' '+year;header.appendChild(h3);
+  var nav=document.createElement('div');nav.className='calendar-nav';
+  var prevBtn=document.createElement('button');prevBtn.type='button';prevBtn.textContent='\u2190';nav.appendChild(prevBtn);
+  var nextBtnCal=document.createElement('button');nextBtnCal.type='button';nextBtnCal.textContent='\u2192';nav.appendChild(nextBtnCal);
+  header.appendChild(nav);container.appendChild(header);
+  var grid=document.createElement('div');grid.className='calendar-grid';
+  ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].forEach(function(dn){
+    var hdr=document.createElement('div');hdr.className='calendar-day-header';hdr.textContent=dn;grid.appendChild(hdr);
+  });
+  for(var i=0;i<startingDayOfWeek;i++){
+    var ec=document.createElement('div');ec.className='calendar-day disabled';grid.appendChild(ec);
+  }
+  for(var day=1;day<=totalDays;day++){
+    var cd=new Date(year,month,day);cd.setHours(0,0,0,0);
+    var dateStr=year+'-'+String(month+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+    var isPast=cd<=today;
+    var isUnavailable=!isPast&&!availableDates[dateStr];
+    var isToday=cd.getTime()===today.getTime();
+    var dc=document.createElement('div');dc.className='calendar-day';
+    if(isPast) dc.classList.add('past');
+    if(isUnavailable) dc.classList.add('disabled');
+    if(isToday) dc.classList.add('today');
+    if(selectedCustomerDate===dateStr) dc.classList.add('selected');
+    dc.setAttribute('data-date',dateStr);dc.textContent=day;
+    if(!isPast&&!isUnavailable) dc.onclick=function(){selectDate(this)};
+    grid.appendChild(dc);
+  }
+  container.appendChild(grid);
+  prevBtn.addEventListener('click',function(){currentMonth.setMonth(currentMonth.getMonth()-1);renderCalendar()});
+  nextBtnCal.addEventListener('click',function(){currentMonth.setMonth(currentMonth.getMonth()+1);renderCalendar()});
+}
+
+function selectDate(element){
+  if(element.classList.contains('disabled')||element.classList.contains('past')) return;
+  document.querySelectorAll('.calendar-day').forEach(function(d){d.classList.remove('selected')});
+  element.classList.add('selected');
+  selectedCustomerDate=element.getAttribute('data-date');
+  selectedTime=null;
+  document.getElementById('selectedDate').value='';
+  document.getElementById('selectedTime').value='';
+  updateSubmitState();
+  var dp=selectedCustomerDate.split('-');
+  var year=parseInt(dp[0]),month=parseInt(dp[1])-1,day=parseInt(dp[2]);
+  var bizDatesToFetch=[];
+  if(businessTimezone===customerTimezone){
+    bizDatesToFetch=[selectedCustomerDate];
+  }else{
+    for(var offset=-1;offset<=1;offset++){
+      var d=new Date(year,month,day+offset);
+      bizDatesToFetch.push(d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'));
+    }
+  }
+  var bookedSlotsMap={};var pending=0;
+  bizDatesToFetch.forEach(function(bizDate){
+    if(bookedSlotsCache[bizDate]!==undefined){
+      bookedSlotsMap[bizDate]=bookedSlotsCache[bizDate];
+    }else{
+      pending++;
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET',API_BASE+'/api/bookings/booked-slots?date='+encodeURIComponent(bizDate)+'&companyId='+COMPANY_ID,true);
+      xhr.onload=function(){
+        var booked=[];
+        if(xhr.status===200){try{booked=JSON.parse(xhr.responseText)}catch(e){}}
+        bookedSlotsCache[bizDate]=booked;bookedSlotsMap[bizDate]=booked;pending--;
+        if(pending===0){renderTimeSlots(bookedSlotsMap);document.getElementById('timeSlotGroup').style.display=''}
+      };
+      xhr.onerror=function(){bookedSlotsCache[bizDate]=[];bookedSlotsMap[bizDate]=[];pending--;
+        if(pending===0){renderTimeSlots(bookedSlotsMap);document.getElementById('timeSlotGroup').style.display=''}
+      };
+      xhr.send();
+    }
+  });
+  if(pending===0){renderTimeSlots(bookedSlotsMap);document.getElementById('timeSlotGroup').style.display=''}
+}
+
+function renderTimeSlots(bookedSlotsMap){
+  var container=document.getElementById('timeSlots');
+  while(container.firstChild) container.removeChild(container.firstChild);
+  var slotData=getCustomerDateSlots(selectedCustomerDate,bookedSlotsMap);
+  if(slotData.length===0){
+    var ns=document.createElement('div');
+    ns.style.cssText='grid-column:1/-1;text-align:center;color:var(--text3);padding:16px;font-size:.82rem';
+    ns.textContent='No available times for this date.';container.appendChild(ns);return;
+  }
+  slotData.forEach(function(slot){
+    var el=document.createElement('div');el.className='time-slot';
+    if(slot.isBooked){el.classList.add('unavailable')}
+    else{
+      el.setAttribute('data-biz-date',slot.bizDate);
+      el.setAttribute('data-biz-slot',slot.bizSlot);
+      el.setAttribute('data-time',slot.displayTime);
+      el.onclick=function(){selectTimeSlot(this)};
+    }
+    var label=document.createElement('div');label.textContent=slot.displayTime+' '+slot.tzAbbr;
+    el.appendChild(label);container.appendChild(el);
+  });
+  var tsg=document.getElementById('timeSlotGroup');
+  if(tsg) setTimeout(function(){tsg.scrollIntoView({behavior:'smooth',block:'start'})},100);
+}
+
+function selectTimeSlot(element){
+  if(element.classList.contains('unavailable')) return;
+  document.querySelectorAll('.time-slot').forEach(function(s){s.classList.remove('selected')});
+  element.classList.add('selected');
+  selectedTime=element.getAttribute('data-time');
+  document.getElementById('selectedDate').value=element.getAttribute('data-biz-date');
+  document.getElementById('selectedTime').value=element.getAttribute('data-biz-slot');
+  updateSubmitState();
+}
+
+function updateSubmitState(){
+  var name=document.getElementById('bookName').value.trim();
+  var email=document.getElementById('bookEmail').value.trim();
+  var phone=document.getElementById('bookPhone').value.trim();
+  var btn=document.getElementById('bookingSubmitBtn');
+  btn.disabled=!(name&&email&&phone&&selectedCustomerDate&&selectedTime);
+}
+
+['bookName','bookEmail','bookPhone'].forEach(function(id){
+  document.getElementById(id).addEventListener('input',updateSubmitState);
+});
+
+document.getElementById('bookingSubmitBtn').addEventListener('click',async function(){
+  var name=document.getElementById('bookName').value.trim();
+  var email=document.getElementById('bookEmail').value.trim();
+  var phone=document.getElementById('bookPhone').value.trim();
+  var valid=true;
+  if(!name){document.getElementById('bookNameErr').classList.add('show');valid=false}
+  else{document.getElementById('bookNameErr').classList.remove('show')}
+  if(!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){document.getElementById('bookEmailErr').classList.add('show');valid=false}
+  else{document.getElementById('bookEmailErr').classList.remove('show')}
+  if(!phone){document.getElementById('bookPhoneErr').classList.add('show');valid=false}
+  else{document.getElementById('bookPhoneErr').classList.remove('show')}
+  if(!valid||!selectedCustomerDate||!selectedTime) return;
+
+  var btn=document.getElementById('bookingSubmitBtn');
+  btn.disabled=true;btn.textContent='Booking...';
+  var status=document.getElementById('bookingStatus');
+
+  var params=new URLSearchParams(window.location.search);
+  var data={
+    companyId:COMPANY_ID,
+    fullName:name,
+    email:email,
+    phone:phone,
+    selectedDate:document.getElementById('selectedDate').value,
+    selectedTime:document.getElementById('selectedTime').value,
+    customerTimezone:customerTimezone,
+    utmSource:params.get('utm_source')||'',
+    utmMedium:params.get('utm_medium')||'',
+    utmCampaign:params.get('utm_campaign')||'',
+    referrerUrl:document.referrer||''
+  };
+
+  try{
+    var response=await fetch(API_BASE+'/api/bookings',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data)
+    });
+    var result=await response.json();
+    if(response.ok&&result.success){
+      if(typeof fbq==='function') fbq('track','Lead');
+      if(typeof gtag==='function') gtag('event','conversion',{send_to:'AW-XXXXX/XXXXX'});
+      window.location.href='/booked';
+    }else{
+      status.textContent='Something went wrong. Please try again.';status.style.display='block';
+      btn.disabled=false;btn.textContent='Book My Demo';
+    }
+  }catch(e){
+    status.textContent='Connection error. Please try again.';status.style.display='block';
+    btn.disabled=false;btn.textContent='Book My Demo';
+  }
+});
+})();
 
 window.addEventListener('scroll',()=>{
   document.querySelector('nav').style.boxShadow=window.scrollY>20?'0 4px 24px rgba(0,25,15,.07)':'none';
