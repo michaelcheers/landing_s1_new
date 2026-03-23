@@ -265,7 +265,6 @@ footer{background:var(--terra);padding:20px var(--hp);display:flex;align-items:c
 .footer-links a:hover{color:rgba(255,255,255,.8)}
 
 /* STICKY MOBILE CTA */
-.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;padding:12px var(--hp);background:rgba(238,240,236,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border-m);box-shadow:0 -4px 24px rgba(0,25,15,.08)}
 
 /* THANK YOU PAGE */
 .ty-page{display:none;min-height:100vh;align-items:center;justify-content:center;padding:80px var(--hp) 40px;background:var(--sand)}
@@ -310,8 +309,6 @@ footer{background:var(--terra);padding:20px var(--hp);display:flex;align-items:c
   .testi-photo{margin:0 auto}
   .testi-bottom{flex-direction:column;text-align:center}
   .testi-chips{justify-content:center}
-  .sticky-cta{display:block}
-  body{padding-bottom:68px}
 }
 @media(max-width:600px){
   .proof-bar-inner{gap:14px}
@@ -668,7 +665,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div><div class="cal-title">Book a free 20-minute demo</div><div class="cal-sub">Pick a time — demo is with our founder, not a sales rep</div></div>
       </div>
       <div class="cal-body">
-        <div class="booking-contact">
+        <div id="calendarContainer" class="calendar-container"></div>
+        <div class="booking-contact" style="margin-top:20px;margin-bottom:0">
           <input type="text" id="bookName" placeholder="Full name *" autocomplete="name">
           <div class="error-msg" id="bookNameErr">Please enter your name</div>
           <input type="email" id="bookEmail" placeholder="Email address *" autocomplete="email">
@@ -676,7 +674,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="tel" id="bookPhone" placeholder="Phone number *" autocomplete="tel">
           <div class="error-msg" id="bookPhoneErr">Please enter your phone number</div>
         </div>
-        <div id="calendarContainer" class="calendar-container"></div>
         <div id="timeSlotGroup" style="display:none">
           <div class="time-slot-label">Pick a time</div>
           <div class="time-slots" id="timeSlots"></div>
@@ -697,14 +694,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 </div><!-- end landing -->
-
-<!-- STICKY MOBILE CTA -->
-<div class="sticky-cta">
-  <a href="#book-demo" class="btn btn-gold" onclick="scrollToDemo(event)" style="width:100%;justify-content:center;border-radius:10px;padding:14px 24px;font-size:.92rem">
-    Book Free Demo
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" style="width:14px;height:14px"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
-  </a>
-</div>
 
 <!-- THANK YOU PAGE -->
 <div id="thankyou" class="ty-page">
