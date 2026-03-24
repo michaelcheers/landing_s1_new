@@ -1850,7 +1850,7 @@ const el=document.getElementById('testimonialText');if(el)el.style.transition='o
 
 function scrollToDemo(e){
   e.preventDefault();
-  document.getElementById('book-demo').scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelector('.calendar-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 // ── Booking Calendar System ──

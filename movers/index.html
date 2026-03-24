@@ -786,7 +786,7 @@ function toggleFaq(btn){
 
 function scrollToDemo(e){
   e.preventDefault();
-  document.getElementById('book-demo').scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelector('.calendar-wrap').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 if(window.location.search.includes('booked=true')){
