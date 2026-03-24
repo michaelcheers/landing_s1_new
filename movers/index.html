@@ -264,30 +264,6 @@ footer{background:var(--terra);padding:20px var(--hp);display:flex;align-items:c
 .footer-links a{font-size:.76rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
 .footer-links a:hover{color:rgba(255,255,255,.8)}
 
-
-.ty-icon svg{width:34px;height:34px;color:#fff}
-.ty-inner h1{font-family:var(--serif);font-size:clamp(1.9rem,3.8vw,2.9rem);font-weight:700;letter-spacing:-.04em;line-height:1.1;margin-bottom:14px}
-.ty-inner h1 em{font-style:italic;color:var(--terra)}
-.ty-inner>p{font-size:.95rem;color:var(--text2);line-height:1.75;margin-bottom:28px}
-.ty-steps{background:var(--surface);border-radius:16px;border:1px solid var(--border-m);box-shadow:var(--shadow-card);padding:26px;text-align:left;margin-bottom:20px}
-.ty-steps h3{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--terra);margin-bottom:16px}
-.ty-step{display:flex;align-items:flex-start;gap:13px;margin-bottom:14px}
-.ty-step:last-child{margin-bottom:0}
-.ty-step-num{width:26px;height:26px;border-radius:50%;background:var(--terra);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;font-weight:700;flex-shrink:0;margin-top:2px}
-.ty-step-text strong{display:block;font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:2px}
-.ty-step-text span{font-size:.8rem;color:var(--text2);line-height:1.5}
-.ty-cal-actions{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
-.ty-cal-btn{display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border-radius:9px;font-size:.82rem;font-weight:600;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:var(--sans)}
-.ty-cal-btn.gcal{background:var(--terra);color:#fff}
-.ty-cal-btn.gcal:hover{background:var(--terra-h)}
-.ty-cal-btn.ical{background:var(--surface);color:var(--text2);border:1px solid var(--border-m)}
-.ty-cal-btn.ical:hover{border-color:var(--border-s)}
-.ty-cal-btn svg{width:14px;height:14px}
-.ty-spam-note{font-size:.78rem;color:var(--text3);margin-bottom:20px;line-height:1.5}
-.ty-social{background:rgba(0,77,64,.06);border:1px solid rgba(0,77,64,.15);border-radius:12px;padding:16px 20px;font-size:.86rem;color:var(--text2);line-height:1.6}
-.ty-social strong{color:var(--terra);display:block;margin-bottom:4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
-.ty-reschedule{font-size:.76rem;color:var(--text3);margin-top:16px}
-
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-inner{grid-template-columns:1fr;gap:36px}
@@ -727,51 +703,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer>
   <a href="#" class="footer-logo">Service<span>1</span></a>
-  <div class="footer-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+  <div class="footer-links"><a href="/privacy">Privacy Policy</a><a href="/terms">Terms of Service</a></div>
 </footer>
 
 </div><!-- end landing -->
-
-<!-- THANK YOU PAGE -->
-<div id="thankyou" class="ty-page">
-  <div class="ty-inner">
-    <div class="ty-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/></svg></div>
-    <p class="ey">You're booked</p>
-    <h1>You're confirmed. <em>Talk soon.</em></h1>
-    <p>Your demo is with our founder — not a sales rep. Come ready to ask anything. It's a real look under the hood, not a pitch.</p>
-    <div class="ty-cal-actions">
-      <a href="https://calendar.google.com/calendar/r/eventedit" target="_blank" class="ty-cal-btn gcal">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"/></svg>
-        Add to Google Calendar
-      </a>
-      <a href="#" class="ty-cal-btn ical">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd"/></svg>
-        Add to Outlook / iCal
-      </a>
-    </div>
-    <p class="ty-spam-note">Don't see the invite? Check your spam or promotions folder — whitelist hello@service1.com so you don't miss it.</p>
-    <div class="ty-steps">
-      <h3>What happens next</h3>
-      <div class="ty-step">
-        <div class="ty-step-num">1</div>
-        <div class="ty-step-text"><strong>Check your inbox now</strong><span>Calendar invite with video call link arrives within a few minutes.</span></div>
-      </div>
-      <div class="ty-step">
-        <div class="ty-step-num">2</div>
-        <div class="ty-step-text"><strong>We'll review your current setup</strong><span>Before the call, we look at what tools you're using so the demo is specific to your operation — not generic.</span></div>
-      </div>
-      <div class="ty-step">
-        <div class="ty-step-num">3</div>
-        <div class="ty-step-text"><strong>Show up with one number in mind</strong><span>What was your net profit last month — after labour, fuel, and expenses? If you don't know, that's exactly what we'll fix.</span></div>
-      </div>
-    </div>
-    <div class="ty-social">
-      <strong>This is not a sales pitch</strong>
-      It's 20 minutes with the founder who ran a moving company. Ask anything. We'll show you exactly what Service1 would look like for your operation.
-    </div>
-    <p class="ty-reschedule">Need to reschedule? Use the link in your confirmation email.</p>
-  </div>
-</div>
 
 <script>
 const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:.1});
@@ -787,11 +722,6 @@ function toggleFaq(btn){
 function scrollToDemo(e){
   e.preventDefault();
   document.querySelector('.calendar-wrap').scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-if(window.location.search.includes('booked=true')){
-  document.getElementById('landing').style.display='none';
-  document.getElementById('thankyou').style.display='flex';
 }
 
 // ── Booking Calendar System ──
