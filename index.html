@@ -717,7 +717,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav>
   <a href="#" class="logo">Service<span>1</span></a>
   <ul class="nav-links"><li><a href="#workflow">How it works</a></li><li><a href="#outcomes">Features</a></li><li><a href="#compare">Compare</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#calculator">Profit Calculator</a></li></ul>
-  <div class="nav-r"><a href="#" class="btn btn-ghost">Sign in</a><a href="#" class="btn btn-gold" style="display:inline-flex;align-items:center;gap:10px;">
+  <div class="nav-r"><a href="https://account.service1.app" class="btn btn-ghost">Sign in</a><a href="#" class="btn btn-gold" style="display:inline-flex;align-items:center;gap:10px;">
       <span style="display:flex;align-items:center;margin-right:2px">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiMxQjQzMzIiLz4KICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIxOSIgcng9IjEzIiByeT0iMTIiIGZpbGw9IiMxYTEwMDgiLz4KICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIyNiIgcng9IjEwIiByeT0iMTIiIGZpbGw9IiNDNjg2NDIiLz4KICA8ZWxsaXBzZSBjeD0iMjkiIGN5PSIyNCIgcng9IjEuNSIgcnk9IjEuOCIgZmlsbD0iIzIyMiIvPgogIDxlbGxpcHNlIGN4PSIzNSIgY3k9IjI0IiByeD0iMS41IiByeT0iMS44IiBmaWxsPSIjMjIyIi8+CiAgPHBhdGggZD0iTTI4IDI5IFEzMiAzMiAzNiAyOSIgc3Ryb2tlPSIjYTA2MDQwIiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGVsbGlwc2UgY3g9IjMyIiBjeT0iNTAiIHJ4PSIxNiIgcnk9IjEwIiBmaWxsPSIjQzY4NjQyIi8+CiAgPHJlY3QgeD0iMjAiIHk9IjQ2IiB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjMUI0MzMyIiBvcGFjaXR5PSIwLjYiLz4KPC9zdmc+" style="width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.6);object-fit:cover;flex-shrink:0;margin-right:-8px;z-index:3;position:relative" alt="">
         <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0Ij4KICA8cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiMwRDRFNUMiLz4KICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIxOSIgcng9IjEzIiByeT0iMTIiIGZpbGw9IiMyYTFhMGEiLz4KICA8ZWxsaXBzZSBjeD0iMzIiIGN5PSIyNiIgcng9IjEwIiByeT0iMTIiIGZpbGw9IiNENDk1NkEiLz4KICA8ZWxsaXBzZSBjeD0iMjkiIGN5PSIyNCIgcng9IjEuNSIgcnk9IjEuOCIgZmlsbD0iIzIyMiIvPgogIDxlbGxpcHNlIGN4PSIzNSIgY3k9IjI0IiByeD0iMS41IiByeT0iMS44IiBmaWxsPSIjMjIyIi8+CiAgPHBhdGggZD0iTTI4IDI5IFEzMiAzMiAzNiAyOSIgc3Ryb2tlPSIjYTA2MDQwIiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPGVsbGlwc2UgY3g9IjMyIiBjeT0iNTAiIHJ4PSIxNiIgcnk9IjEwIiBmaWxsPSIjRDQ5NTZBIi8+CiAgPHJlY3QgeD0iMjAiIHk9IjQ2IiB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHJ4PSI0IiBmaWxsPSIjMEQ0RTVDIiBvcGFjaXR5PSIwLjYiLz4KPC9zdmc+" style="width:26px;height:26px;border-radius:50%;border:2px solid rgba(255,255,255,.6);object-fit:cover;flex-shrink:0;margin-right:-8px;z-index:2;position:relative" alt="">
@@ -2204,6 +2204,7 @@ document.getElementById('bookingSubmitBtn').addEventListener('click',async funct
       bp.set('time',selectedTime);
       bp.set('mins',String(bookingAvailability.slotMinutes||30));
       bp.set('tz',customerTimezone);
+      if(result.meetLink) bp.set('meet',result.meetLink);
       window.location.href='/booked?'+bp.toString();
     }else{
       status.textContent='Something went wrong. Please try again.';status.style.display='block';

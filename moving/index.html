@@ -1075,6 +1075,7 @@ document.getElementById('bookingSubmitBtn').addEventListener('click',async funct
       bp.set('time',selectedTime);
       bp.set('mins',String(bookingAvailability.slotMinutes||30));
       bp.set('tz',customerTimezone);
+      if(result.meetLink) bp.set('meet',result.meetLink);
       window.location.href='/booked?'+bp.toString();
     }else{
       status.textContent='Something went wrong. Please try again.';status.style.display='block';
