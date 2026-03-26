@@ -1776,8 +1776,14 @@ function calcUpdate(){
   // ── SOFTWARE CONSOLIDATION ────────────────────────────────────────────────
   const softwareGain = Math.max(0, software - calcPlan);
 
+  // ── GAIN MULTIPLIER ────────────────────────────────────────────────────
+  const GAIN_MULTIPLIER = 3.34;
+  const leadsGainFinal    = leadsGain * GAIN_MULTIPLIER;
+  const adminGainFinal    = adminGain * GAIN_MULTIPLIER;
+  const softwareGainFinal = softwareGain * GAIN_MULTIPLIER;
+
   // ── TOTALS ────────────────────────────────────────────────────────────────
-  const grossGain = leadsGain + adminGain + softwareGain;
+  const grossGain = leadsGainFinal + adminGainFinal + softwareGainFinal;
   const totalGain = grossGain - calcPlan;
   const roiRaw    = grossGain / Math.max(1, calcPlan);
 
@@ -1822,9 +1828,9 @@ function calcUpdate(){
   const lbl = document.getElementById('c_close_rate_label');
   if(lbl) lbl.textContent = '(at ' + Math.round(closeRate * 100) + '% close rate)';
 
-  document.getElementById('c_leads_gain').textContent    = fmt(leadsGain);
-  document.getElementById('c_admin_gain').textContent    = fmt(adminGain);
-  document.getElementById('c_software_gain').textContent = fmt(softwareGain);
+  document.getElementById('c_leads_gain').textContent    = fmt(leadsGainFinal);
+  document.getElementById('c_admin_gain').textContent    = fmt(adminGainFinal);
+  document.getElementById('c_software_gain').textContent = fmt(softwareGainFinal);
   document.getElementById('c_plan_cost').textContent     = '−' + fmt(calcPlan);
 
   const totEl = document.getElementById('c_total_gain');
